@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <title>OpenAI API 用量测试</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div class="eyebrow">CODEX-TEST / API PLAYGROUND</div>
+      <h1>OpenAI API 用量测试</h1>
+      <p class="sub">发送一次真实 API 请求，查看 API 返回的 Token 用量。</p>
+    </header>
+
+    <section class="status card">
+      <div><span class="dot" id="dot"></span><span id="statusText">正在检查服务…</span></div>
+      <span class="model" id="modelName">模型读取中</span>
+    </section>
+
+    <section class="card">
+      <label for="prompt">测试内容</label>
+      <textarea id="prompt" rows="5">请用一句话介绍你自己，并告诉我今天适合做什么。</textarea>
+      <div class="actions">
+        <span class="hint">每次点击都会发起一次真实 API 请求并产生相应费用。</span>
+        <button id="send">发送 API 请求</button>
+      </div>
+      <p class="error" id="error" role="alert"></p>
+    </section>
+
+    <section class="card result" id="result" hidden>
+      <div class="result-head"><h2>请求结果</h2><span id="requestId"></span></div>
+      <p class="answer" id="answer"></p>
+      <h3>Token 用量</h3>
+      <div class="metrics">
+        <div><span>输入 Tokens</span><strong id="inputTokens">—</strong></div>
+        <div><span>输出 Tokens</span><strong id="outputTokens">—</strong></div>
+        <div><span>总计 Tokens</span><strong id="totalTokens">—</strong></div>
+      </div>
+      <p class="hint" id="usageNote"></p>
+    </section>
+
+    <section class="note">
+      <strong>如何验证额度变化</strong>
+      <ol>
+        <li>先打开 <a href="https://platform.openai.com/usage" target="_blank" rel="noreferrer">API Usage 页面</a>，记下当前用量。</li>
+        <li>回到本页面点击一次“发送 API 请求”。</li>
+        <li>查看上方 Token 统计，再回 Usage 页面核对变化。</li>
+      </ol>
+      <p>Usage 页面数据可能有延迟。ChatGPT/Codex 订阅额度与 API Platform 用量是两套独立体系。代码上传到 GitHub 本身不会消耗 API Token。</p>
+    </section>
+    <footer>API Key 仅由本地服务端环境变量读取，不会放在网页或仓库中。</footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
